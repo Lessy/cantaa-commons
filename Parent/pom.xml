@@ -49,8 +49,8 @@
    </distributionManagement>
 
    <scm>
-      <connection>scm:git://gitblit.mycantaa.eu/cantaa-commons.git</connection>
-      <url>https://github.com/Lessy/Lessy-Framework</url>
+      <connection>scm:git:http://github.com/Lessy/cantaa-commons.git</connection>
+      <url>https://github.com/Lessy/cantaa-commons</url>
    </scm>
 
    <properties>
