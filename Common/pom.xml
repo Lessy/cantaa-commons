@@ -15,6 +15,15 @@
    <packaging>jar</packaging>
 
    <dependencies>
+      <dependency>
+         <groupId>org.apache.wicket</groupId>
+         <artifactId>wicket-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>javassist</groupId>
+         <artifactId>javassist</artifactId>
+      </dependency>
+
       <!-- SPRING -->
       <!--<dependency>-->
          <!--<groupId>org.springframework</groupId>-->

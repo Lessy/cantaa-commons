@@ -21,7 +21,7 @@ public class StringUtil {
         return (value == null) ? null : value.trim();
     }
 
-    public static CharSequence join(String separator, String... values) {
+    public static CharSequence join(String separator, Object... values) {
         if (values == null) {
             return null;
         }
@@ -29,7 +29,7 @@ public class StringUtil {
         return join(separator, Arrays.asList(values));
     }
 
-    public static CharSequence join(String separator, List<String> values) {
+    public static CharSequence join(String separator, List<Object> values) {
         if (values == null) {
             return null;
         }
@@ -39,13 +39,13 @@ public class StringUtil {
         }
 
         if (values.size() == 1) {
-            return values.get(0);
+            return objectToString(values.get(0));
         }
 
         boolean added = false;
         StringBuilder b = new StringBuilder();
         for (int i = 0; i < values.size(); i++) {
-            String value = values.get(i);
+            String value = objectToString(values.get(i));
             if (StringUtil.isEmpty(value)) {
                 continue;
             }
@@ -69,7 +69,7 @@ public class StringUtil {
      * @deprecated Use join instead (returns CharSequence instead of StringBuilder since 17.07.2014)
      */
     public static CharSequence concatenate(Object... objects) {
-        return join(null, (String[]) objects);
+        return join(null, objects);
     }
 
     /**

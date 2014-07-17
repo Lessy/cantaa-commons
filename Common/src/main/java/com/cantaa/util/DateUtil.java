@@ -1,5 +1,6 @@
 package com.cantaa.util;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -8,6 +9,14 @@ import java.util.Date;
  * @author Hans Lesmeister
  */
 public class DateUtil {
+
+    /**
+     * Get current date as timestamp
+     * @return timestamp
+     */
+    public static Timestamp createTimestamp() {
+        return new Timestamp(new Date().getTime());
+    }
 
    /**
     * Creates a date specified with the passed values
