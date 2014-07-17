@@ -35,33 +35,33 @@ public class StringUtilTest extends TestCase
    public void testConcatenate() {
       String a, b, c;
       a = "a"; b = "b"; c = "c";
-      assertEquals("abc", StringUtil.concatenate(a, b, c).toString());
+      assertEquals("abc", StringUtil.join(null, a, b, c).toString());
 
       b = null;
-      assertEquals("anullc", StringUtil.concatenate(a, b, c).toString());
+      assertEquals("ac", StringUtil.join(null, a, b, c).toString());
    }
 
    public void testConcatenateNotEmpty() {
       String a, b;
       a = null;
       b = "2";
-      assertEquals("2", StringUtil.concatenateNotEmpty(a, b));
+      assertEquals("2", StringUtil.join(null, a, b));
 
       a = null;
       b = null;
-      assertEquals("", StringUtil.concatenateNotEmpty(a, b));
+      assertEquals("", StringUtil.join(null, a, b));
 
       a = "1";
       b = "2";
-      assertEquals("1 2", StringUtil.concatenateNotEmpty(a, b));
+      assertEquals("1 2", StringUtil.join(" ", a, b));
 
       a = "1";
       b = null;
-      assertEquals("1", StringUtil.concatenateNotEmpty(a, b));
+      assertEquals("1", StringUtil.join(null, a, b));
 
       a = "1";
       b = "2";
-      assertEquals("1;2", StringUtil.concatenateNotEmpty(";", a, b));
+      assertEquals("1;2", StringUtil.join(";", a, b));
 
    }
 
