@@ -18,6 +18,8 @@ import com.cantaa.util.MessageHolder;
  * bundlename as a constructor parameter.
  * 
  * @author Hans Lesmeister
+ *
+ * @deprecated use BundleProvider instead
  */
 public class ResourceManager implements MessageResolver {
 

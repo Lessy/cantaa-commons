@@ -4,6 +4,7 @@ import com.cantaa.util.StringUtil;
 import com.cantaa.util.MessageHolder;
 
 /**
+ * @deprecated used exclusively by ResourceManager which is deprecated as well
  * @author Hans Lesmeister
  */
 public class MessageBean implements MessageHolder {

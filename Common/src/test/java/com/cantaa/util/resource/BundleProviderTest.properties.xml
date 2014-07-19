@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+    <entry key="test.headline">Probefahrt</entry>
+    <entry key="test.headline2">Probefahrt 2</entry>
+    <entry key="test.welcome">Guten Tag {0},</entry>
+</properties>
