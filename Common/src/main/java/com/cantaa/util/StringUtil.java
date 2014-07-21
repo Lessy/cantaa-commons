@@ -76,7 +76,7 @@ public class StringUtil {
      * Concats 2 objects with an optional separator. Sep. is only inserted if objects are both not null
      *
      * @return Concatenated string
-     * @sep Separator, space if null
+     * @param sep Separator, space if null
      * @deprecated Use join instead
      */
     public static String concatenateNotEmpty(String sep, String s1, String s2) {
