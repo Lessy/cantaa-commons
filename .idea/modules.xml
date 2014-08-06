@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://K:/Projects/Lessy/Parent/cantaa-commons.iml" filepath="K:/Projects/Lessy/Parent/cantaa-commons.iml" />
-      <module fileurl="file://K:/Projects/Lessy/Parent/cantaa-commons-parent.iml" filepath="K:/Projects/Lessy/Parent/cantaa-commons-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/cantaa-commons.iml" filepath="$PROJECT_DIR$/Common/cantaa-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Parent/cantaa-commons-parent.iml" filepath="$PROJECT_DIR$/Parent/cantaa-commons-parent.iml" />
     </modules>
   </component>
 </project>
