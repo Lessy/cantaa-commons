@@ -31,14 +31,14 @@ public class PropertiesLoader {
     }
 
     private static void loadPropertiesFromResources(String propFile, Properties targetProperties) {
-        log.info("Loading properties from file: {}", propFile);
         InputStream in = PropertiesLoader.class.getResourceAsStream("/" + propFile);
         if (in == null) {
             // Properties-File does not exist. Ignore
-            log.warn("File {} does not exist.", propFile);
+            log.warn("Properties File {} does not exist.", propFile);
             return;
         }
 
+        log.info("Loading properties from file: {}", propFile);
         loadPropertiesFromStream(in, targetProperties);
     }
 
