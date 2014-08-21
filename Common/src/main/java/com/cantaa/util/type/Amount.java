@@ -10,7 +10,7 @@ import java.math.RoundingMode;
  * General class to represent a number. Internally a BigDecimal is used.
  * @author Hans Lesmeister
  */
-public abstract class Amount<T extends Amount<T>> implements Serializable
+public abstract class Amount<T extends Amount<T>> extends Number implements Serializable
 {
    private BigDecimal value;
 
@@ -161,4 +161,24 @@ public abstract class Amount<T extends Amount<T>> implements Serializable
    {
       return value.toString();
    }
+
+    @Override
+    public int intValue() {
+        return value.intValue();
+    }
+
+    @Override
+    public long longValue() {
+        return value.longValue();
+    }
+
+    @Override
+    public float floatValue() {
+        return value.floatValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return value.doubleValue();
+    }
 }
