@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
-import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -21,9 +20,12 @@ import com.cantaa.util.Reject;
 
 /**
  * Handles loading resource-strings from a bundle
- * TODO HL: move to cantaa commons
  * <p/>
- * Usage: <code>new BundleProvider().getString("key", "parameter");</code>
+ * Usage:
+ * <pre><code>
+ *     provider = new BundleProvider("BundleName");
+ *     String value = provider.getString("key", "parameter");
+ * </code></pre>
  *
  * @author Hans Lesmeister
  */
@@ -33,17 +35,28 @@ public class BundleProvider {
     private static final ResourceBundle.Control control = new MyBundleControl();
     private static final List<String> CONTROL_FORMATS = Arrays.asList("properties.xml");
 
-    private final String bundleName;
+    private final String[] bundleNames;
     private LocaleProvider localeProvider;
 
-    public BundleProvider(String bundleName) {
-        this(bundleName, null);
+    /**
+     * Constructor for backwards compatibility
+     * @deprecated Use constructor <code>BundleProvider(LocalePricer, String[])</code> instead
+     * @param bundleName
+     * @param localeProvider
+     */
+    public BundleProvider(String bundleName, LocaleProvider localeProvider) {
+        this(localeProvider, bundleName);
     }
 
-    public BundleProvider(String bundleName, LocaleProvider localeProvider) {
+    public BundleProvider(String bundleName) {
+        this(null, bundleName);
+    }
+
+    public BundleProvider(LocaleProvider localeProvider, String... bundleNames) {
         super();
-        Reject.ifNull(bundleName, "bundleName is null");
-        this.bundleName = bundleName;
+        Reject.ifNull(bundleNames, "bundleNames is null");
+        Reject.ifTrue(bundleNames.length == 0, "bundleNames is empty");
+        this.bundleNames = bundleNames;
         this.localeProvider = localeProvider;
     }
 
@@ -66,14 +79,16 @@ public class BundleProvider {
      */
     public String getString(Locale locale, String key, Object... objects) {
         Locale usedLocale = determineLocale(locale);
-        ResourceBundle rb = ResourceBundle.getBundle(bundleName, usedLocale, control);
 
-        String value;
-        try {
-            value = rb.getString(key);
-        }
-        catch (MissingResourceException e) {
-            value = key;
+        String value = key;
+
+        for (String bundleName : bundleNames) {
+            ResourceBundle rb = ResourceBundle.getBundle(bundleName, usedLocale, control);
+
+            if (rb.containsKey(key)) {
+                value = rb.getString(key);
+                break;
+            }
         }
 
         if ((value != null) && (objects != null) && (objects.length != 0)) {
@@ -183,6 +198,7 @@ public class BundleProvider {
             return props.getProperty(key);
         }
 
+        @SuppressWarnings("unchecked")
         public Enumeration<String> getKeys() {
             return (Enumeration<String>) props.propertyNames();
         }

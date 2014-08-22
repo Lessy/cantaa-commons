@@ -5,4 +5,7 @@
     <entry key="test.headline">Probefahrt</entry>
     <entry key="test.headline2">Probefahrt 2</entry>
     <entry key="test.welcome">Guten Tag {0},</entry>
+
+    <entry key="test.first.a">A From Base</entry>
+    <entry key="test.first.c">C From Base</entry>
 </properties>

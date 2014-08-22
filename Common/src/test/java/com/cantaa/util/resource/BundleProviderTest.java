@@ -21,7 +21,7 @@ public class BundleProviderTest {
     @Before
     public void setUp() throws Exception {
         locale = Locale.GERMANY;
-        bundleProvider = new BundleProvider(this.getClass().getName(), new MyLocaleProvider());
+        bundleProvider = new BundleProvider(new MyLocaleProvider(), this.getClass().getName());
     }
 
     @Test
