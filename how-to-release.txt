@@ -1,0 +1,87 @@
+## Prepare software
+- Pull the branch you want to release
+- Set the version in the POM's
+- Deploy with profiles gpg-release and sonytype-oss-release
+  mvn clean deploy -P ...
+
+## Release Software to Central
+- Browse to https://oss.sonatype.org and login
+- under Build Promotion, goto Staging Repositories
+- Sort the list by Updated and search for comcantaa
+- Close the Repo
+- Wait until ready (do a refresh)
+- If all is okay (see under tab "activity"): release the Repo
+  If not okay: check the reason and drop the Repo, start over with corrections
+
+## Siging artifacts
+- The articfacts are signed with a specific public key. The name of the key is stored in the paren pom. Eventually
+  change that to another public key
+- To create a new key-pair: gpg --gen-key
+- Upload the public key to a trusted key-server
+
+## Interesting Links
+- How to release and deploy manually at Sonatype
+  http://central.sonatype.org/pages/releasing-the-deployment.html
+
+- Describes the release cycle with Maven and suggest how to automate it
+  http://central.sonatype.org/pages/apache-maven.html
+
+
+%SystemRoot%\system32
+%SystemRoot%
+%SystemRoot%\System32\Wbem
+%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\
+C:\Program Files\TortoiseSVN\bin
+%M2_HOME%\bin
+%JAVA_HOME%\bin
+%ANT_HOME%\bin
+C:\Program Files (x86)\GNU\GnuPG\pub
+%PHP_HOME%
+C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\
+C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\
+C:\Program Files\Microsoft SQL Server\100\Tools\Binn\
+C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn
+K:\Utils
+C:\Program Files\TortoiseGit\bin
+C:\Program Files (x86)\Parallels\Parallels Workstation\Application
+C:\Program Files\Common Files\Microsoft Shared\Microsoft Online Services
+C:\Program Files (x86)\Common Files\Microsoft Shared\Microsoft Online Services
+C:\Program Files\OpenVPN\bin
+
+
+
+C:\Windows\system32
+C:\Windows
+C:\Windows\System32\Wbem
+C:\Windows\System32\WindowsPowerShell\v1.0\
+C:\Program Files\TortoiseSVN\bin
+K:\Java\maven\maven-2.2.1\bin
+K:\Java\jdk\jdk1.7.21-64\bin
+K:\Java\ant165\bin
+C:\Program Files (x86)\GNU\GnuPG\pub
+K:\Java\php5
+C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\
+C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\
+C:\Program Files\Microsoft SQL Server\100\Tools\Binn\
+C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn
+K:\Utils
+C:\Program Files\TortoiseGit\bin
+C:\Program Files (x86)\Parallels\Parallels Workstation\Application
+C:\Program Files\Common Files\Microsoft Shared\Microsoft Online Services
+C:\Program Files (x86)\Common Files\Microsoft Shared\Microsoft Online Services
+C:\Program Files\OpenVPN\bin
+C:\Windows\system32
+C:\Windows
+C:\Windows\System32\Wbem
+C:\Windows\System32\WindowsPowerShell\v1.0\
+C:\Program Files (x86)\Parallels\Parallels Workstation\Application
+C:\Program Files\TortoiseSVN\bin
+C:\Program Files\TortoiseSVN\bin
+K:\Java\maven\maven-2.2.1\bin
+C:\Program Files\TortoiseSVN\bin
+K:\Java\maven\maven-2.2.1\bin
+C:\Program Files\TortoiseSVN\bin
+K:\Java\maven\maven-2.2.1\bin
+K:\Java\jdk\jdk1.6.0\bin
+K:\Java\ant165\bin
+k:\Java\Git\cmd
