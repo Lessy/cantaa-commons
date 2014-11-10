@@ -18,6 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cantaa.util.StringUtil;
+import com.cantaa.util.type.Money;
+import com.cantaa.util.type.Money4;
+import com.cantaa.util.type.Percentage;
+import com.cantaa.util.type.Quantity;
 
 /**
  * To create type safe bean string-paths and wicket Property-Models
@@ -46,6 +50,11 @@ public class SafeModel {
         typeMap.put(BigDecimal.class, nullType);
         typeMap.put(Timestamp.class, nullType);
         typeMap.put(List.class, nullType);
+        typeMap.put(Percentage.class, nullType);
+        typeMap.put(Percentage.class, nullType);
+        typeMap.put(Quantity.class, nullType);
+        typeMap.put(Money.class, nullType);
+        typeMap.put(Money4.class, nullType);
     }
 
 
