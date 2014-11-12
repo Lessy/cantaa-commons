@@ -80,7 +80,8 @@ public class PropertiesLoader {
         Enumeration en = properties.propertyNames();
         while (en.hasMoreElements()) {
             String property = (String) en.nextElement();
-            list.add(property + " = " + properties.getProperty(property));
+            String value = property.toLowerCase().contains("password") ? "*****" : properties.getProperty(property);
+            list.add(property + " = " + value);
         }
         Collections.sort(list);
 
