@@ -95,4 +95,95 @@ public class AjaxUtil {
     public static void appendAlert(String s) {
         appendJavaScript("alert('" + s + "');");
     }
+
+    public static String callAPIBefore(String callback, String... parameters) {
+        return callAPI(false, callback, parameters);
+    }
+
+    public static String callAPIAfter(String callback, String... parameters) {
+        return callAPI(true, callback, parameters);
+    }
+
+    public static String createJSONArray(String... values) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        boolean isFirst = true;
+        for (String value : values) {
+            if (isFirst) {
+                isFirst = false;
+                sb.append("\"");
+            } else {
+                sb.append(",\"");
+            }
+            sb.append(value);
+            sb.append("\"");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+
+    public static String callAPI(boolean append, String callback, String... parameters) {
+        String script = createJavaScriptCall(callback, parameters);
+
+        if (append) {
+            AjaxUtil.appendJavaScript(script);
+        } else {
+            AjaxUtil.prependJavaScript(script);
+        }
+
+        return script;
+    }
+
+    /**
+     * Compose JavaScript function call
+     * @param callback callback function, may contain special Wicket-After-Callback separated with "|", i.e.
+     *                 "someAfterFunction|myFunction" => "someAfterFunction|myFunction(someAfterFunction)"
+     * @param parameters Parameters to pass to the JavaScript-function call. All Parameters will be stringyfied
+     * @return JavaScript
+     */
+    public static String createJavaScriptCall(String callback, String... parameters) {
+        String afterCall;
+        String call;
+
+        // Special treatment of "magic" Wicket-Callback with pipe "|"
+        int specialIndex = callback.indexOf("|");
+        if (specialIndex >= 0) {
+            afterCall = callback.substring(0, specialIndex);
+            call = callback.substring(specialIndex + 1);
+        } else {
+            afterCall = null;
+            call = callback;
+        }
+
+        StringBuilder script = new StringBuilder();
+
+        if (afterCall != null) {
+            script.append(afterCall).append("|");
+        }
+
+        script.append(call);
+        script.append("(");
+
+        if (afterCall != null) {
+            script.append(afterCall);
+        }
+
+        if (parameters != null) {
+            boolean first = true;
+            for (String parameter : parameters) {
+                if (first && (afterCall == null)) {
+                    first = false;
+                } else {
+                    script.append(", ");
+                }
+
+                script.append("'").append(parameter).append("'");
+            }
+        }
+
+        script.append(");");
+
+        return script.toString();
+    }
 }

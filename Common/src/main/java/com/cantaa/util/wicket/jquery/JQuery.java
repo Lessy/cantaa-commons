@@ -71,8 +71,9 @@ public class JQuery implements JQRenderable {
         return new JQuery(tag);
     }
 
-    public void addSnippet(JQSnippet snippet) {
+    public JQuery addSnippet(JQSnippet snippet) {
         snippets.add(snippet);
+        return this;
     }
 
     /**
@@ -140,6 +141,19 @@ public class JQuery implements JQRenderable {
         }
     }
 
+    /**
+     * Covenient do show or hide with the passed boolean
+     * @param doShow true: show, false: hide
+     * @return this for chaining
+     */
+    public JQuery showHide(boolean doShow) {
+        if (doShow) {
+            return show();
+        } else {
+            return hide();
+        }
+    }
+
     public JQuery hide() {
         addSnippet(new JQSnippet("hide"));
         return this;
@@ -164,4 +178,31 @@ public class JQuery implements JQRenderable {
         addSnippet(new JQSnippet("trigger", trigger));
         return this;
     }
+
+    public JQuery enable() {
+        addSnippet(new JQSnippet("prop", "disabled", false));
+        return this;
+    }
+
+    public JQuery disable() {
+        addSnippet(new JQSnippet("prop", "disabled", true));
+        return this;
+    }
+
+    public JQuery focus() {
+        addSnippet(new JQSnippet("focus"));
+        return this;
+    }
+
+    public JQuery select() {
+        addSnippet(new JQSnippet("select"));
+        return this;
+    }
+
+    public JQuery scrollTop(int position) {
+        addSnippet(new JQSnippet("scrollTop", position));
+        return this;
+    }
+
+
 }
