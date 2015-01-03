@@ -93,8 +93,8 @@ public class CacheTest {
         }
 
         @Override
-        public Object getCacheIdentifier() {
-            return id;
+        public Object[] getCacheIdentifiers() {
+            return new Object[] {id};
         }
     }
 

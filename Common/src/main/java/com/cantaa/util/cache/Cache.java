@@ -36,7 +36,7 @@ public class Cache {
      * @param object The entity to cache
      */
     public void write(Cacheable object) {
-        if ((object == null) || (object.getCacheIdentifier() == null)) {
+        if (object == null) {
             return;
         }
 
@@ -53,11 +53,16 @@ public class Cache {
      * @param object The entity to cache
      */
     public <R extends Cacheable> void write(Class<? extends Cacheable> clazz, R object) {
-        if ((clazz == null) || (object == null) || (object.getCacheIdentifier() == null)) {
+        if ((clazz == null) || (object == null) || (object.getCacheIdentifiers() == null)) {
             return;
         }
 
-        write(clazz, object, object.getCacheIdentifier());
+        for (Object id : object.getCacheIdentifiers()) {
+            if (id != null) {
+                write(clazz, object, id);
+            }
+        }
+
     }
 
     public <R extends Cacheable> void write(Class<? extends Cacheable> clazz, R object, Object identifier) {
