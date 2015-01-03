@@ -59,7 +59,7 @@
       <spring.version>3.0.5.RELEASE</spring.version>
       <hibernate.version>3.6.0.Final</hibernate.version>
       <jetty.version>6.1.5</jetty.version>
-      <wicket.version>1.5.3</wicket.version>
+      <wicket.version>6.16.0</wicket.version>
    </properties>
 
     <profiles>
@@ -83,24 +83,24 @@
       <dependencies>
 
          <!--  SPRING DEPENDENCIES -->
-         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-core</artifactId>-->
-            <!--<version>${spring.version}</version>-->
-         <!--</dependency>-->
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+         </dependency>
          <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
             <version>${spring.version}</version>
          </dependency>
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+         </dependency>
          <!--<dependency>-->
             <!--<groupId>org.springframework</groupId>-->
             <!--<artifactId>spring-orm</artifactId>-->
-            <!--<version>${spring.version}</version>-->
-         <!--</dependency>-->
-         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-web</artifactId>-->
             <!--<version>${spring.version}</version>-->
          <!--</dependency>-->
          <!--<dependency>-->
@@ -129,7 +129,13 @@
          <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
-            <version>6.16.0</version>
+            <version>${wicket.version}</version>
+            <optional>true</optional>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-spring</artifactId>
+            <version>${wicket.version}</version>
             <optional>true</optional>
          </dependency>
 
