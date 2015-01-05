@@ -3,6 +3,7 @@ package com.cantaa.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
@@ -20,6 +21,10 @@ public class PropertiesLoader {
     private static final Logger log = LoggerFactory.getLogger(PropertiesLoader.class);
 
     public static Properties loadProperties(String[] propResourceNames) {
+        return loadProperties(Arrays.asList(propResourceNames));
+    }
+
+    public static Properties loadProperties(Iterable<String> propResourceNames) {
 
         Properties properties = new Properties();
 
