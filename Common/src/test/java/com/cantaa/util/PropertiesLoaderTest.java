@@ -29,4 +29,11 @@ public class PropertiesLoaderTest {
         assertNotNull(properties);
         assertEquals("testvalue", properties.getProperty("testkey"));
     }
+
+    @Test
+    public void testLoadWithClasspathPrefix() throws Exception {
+        Properties properties = PropertiesLoader.loadProperties(new String[]{"classpath:com/cantaa/util/propertiesloadertest.properties"});
+        assertNotNull(properties);
+        assertEquals("testvalue", properties.getProperty("testkey"));
+    }
 }

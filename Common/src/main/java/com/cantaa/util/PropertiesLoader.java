@@ -36,6 +36,10 @@ public class PropertiesLoader {
     }
 
     private static void loadPropertiesFromResources(String propFile, Properties targetProperties) {
+        if (propFile.startsWith("classpath:")) {
+            propFile = propFile.replace("classpath:", "");
+        }
+
         InputStream in = PropertiesLoader.class.getResourceAsStream("/" + propFile);
         if (in == null) {
             // Properties-File does not exist. Ignore
