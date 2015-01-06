@@ -36,4 +36,32 @@ public class PropertiesLoaderTest {
         assertNotNull(properties);
         assertEquals("testvalue", properties.getProperty("testkey"));
     }
+
+    @Test
+    public void testStripPrefix() throws Exception {
+        Properties properties = PropertiesLoader.loadProperties(new String[]{"com/cantaa/util/propertiesloadertest.properties"});
+        assertNotNull(properties);
+
+        assertEquals("1", properties.getProperty("mypref.stripvalue"));
+        assertEquals("2", properties.getProperty("mypref_stripvalue"));
+
+        Properties strippedProperties = PropertiesLoader.stripProperties("mypref", properties, false);
+        assertEquals("1", properties.getProperty("mypref.stripvalue"));
+        assertEquals("2", properties.getProperty("mypref_stripvalue"));
+        assertEquals(null, strippedProperties.getProperty("mypref.stripvalue"));
+        assertEquals(null, strippedProperties.getProperty("mypref_stripvalue"));
+        assertEquals("1", strippedProperties.getProperty("stripvalue"));
+
+        strippedProperties = PropertiesLoader.stripProperties("mypref", properties, true, "_");
+        assertEquals("1", properties.getProperty("mypref.stripvalue"));
+        assertEquals(null, properties.getProperty("mypref_stripvalue"));
+        assertEquals("2", properties.getProperty("stripvalue"));
+        assertEquals(null, strippedProperties.getProperty("mypref.stripvalue"));
+        assertEquals(null, strippedProperties.getProperty("mypref_stripvalue"));
+        assertEquals("2", strippedProperties.getProperty("stripvalue"));
+
+
+    }
+
+
 }
