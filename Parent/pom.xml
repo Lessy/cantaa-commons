@@ -81,6 +81,12 @@
 
    <dependencyManagement>
       <dependencies>
+         <!-- Javax etc -->
+         <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+         </dependency>
 
          <!--  SPRING DEPENDENCIES -->
          <dependency>
@@ -98,11 +104,11 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
          </dependency>
-         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-orm</artifactId>-->
-            <!--<version>${spring.version}</version>-->
-         <!--</dependency>-->
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+         </dependency>
          <!--<dependency>-->
             <!--<groupId>org.springframework</groupId>-->
             <!--<artifactId>spring-tx</artifactId>-->
