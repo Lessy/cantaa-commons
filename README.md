@@ -8,11 +8,18 @@ Release:
 1.1
   First release to Maven Central
 
-
 External dependancies:
+- Global
+  * slf-log4j12
+  * junit4 (Test only)
 
-wicket-core 6.16.0:
-- SafeModel.model()
+- Spring-Package
+  * spring-core, -beans, -web, -orm
+  * javax.persistence
 
-javassist 3.12.0.GA
-- SafeModel
+- Wicket-Package
+  * wicket-core:
+  * wicket-spring:
+  * javassist (SafeModel)
+
+All dependencies are marked as optional

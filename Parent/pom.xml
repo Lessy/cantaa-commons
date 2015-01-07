@@ -19,7 +19,7 @@
 
    <groupId>com.cantaa</groupId>
    <artifactId>cantaa-commons-parent</artifactId>
-   <version>1.4-SNAPSHOT</version>
+   <version>1.5-SNAPSHOT</version>
 
    <packaging>pom</packaging>
 
@@ -66,7 +66,6 @@
         <profile>
             <id>gpg-release</id>
             <properties>
-                <!--<gpg.passphrase>r3MszFMjQeD8ocadYKWMP4M</gpg.passphrase>-->
                 <gpg.useagent>true</gpg.useagent>
                 <gpg.keyname>73513C5204A82C66</gpg.keyname>
                 <!--
@@ -136,20 +135,17 @@
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-core</artifactId>
             <version>${wicket.version}</version>
-            <optional>true</optional>
          </dependency>
          <dependency>
             <groupId>org.apache.wicket</groupId>
             <artifactId>wicket-spring</artifactId>
             <version>${wicket.version}</version>
-            <optional>true</optional>
          </dependency>
 
          <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.12.0.GA</version>
-            <optional>true</optional>
          </dependency>
 
          <dependency>
@@ -188,12 +184,15 @@
       <dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-log4j12</artifactId>
+         <optional>true</optional>
       </dependency>
 
       <!-- DEPENDENCIES FOR TESTING -->
       <dependency>
          <groupId>junit</groupId>
          <artifactId>junit</artifactId>
+         <scope>test</scope>
+         <optional>true</optional>
       </dependency>
    </dependencies>
 

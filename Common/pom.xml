@@ -7,7 +7,7 @@
    <parent>
       <groupId>com.cantaa</groupId>
       <artifactId>cantaa-commons-parent</artifactId>
-      <version>1.4-SNAPSHOT</version>
+      <version>1.5-SNAPSHOT</version>
       <relativePath>../Parent/pom.xml</relativePath>
    </parent>
 
@@ -15,31 +15,38 @@
    <packaging>jar</packaging>
 
    <dependencies>
+      <!-- WICKET -->
       <dependency>
          <groupId>org.apache.wicket</groupId>
          <artifactId>wicket-core</artifactId>
+         <optional>true</optional>
       </dependency>
       <dependency>
          <groupId>org.apache.wicket</groupId>
          <artifactId>wicket-spring</artifactId>
+         <optional>true</optional>
       </dependency>
       <dependency>
          <groupId>javassist</groupId>
          <artifactId>javassist</artifactId>
+         <optional>true</optional>
       </dependency>
 
       <!-- SPRING -->
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-core</artifactId>
+         <optional>true</optional>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-beans</artifactId>
+         <optional>true</optional>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
          <artifactId>spring-web</artifactId>
+         <optional>true</optional>
       </dependency>
       <dependency>
          <groupId>org.springframework</groupId>
@@ -49,6 +56,7 @@
       <dependency>
          <groupId>javax.persistence</groupId>
          <artifactId>persistence-api</artifactId>
+         <optional>true</optional>
       </dependency>
 
       <!--<dependency>-->
