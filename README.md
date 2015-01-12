@@ -1,6 +1,15 @@
 cantaa-commons
 ==============
 Release:
+1.5
+- Time, TimeConverter
+- PlaceHolderConfigurer, Prop.loader
+- Cache: Multikey-Aware
+- BooleanModel
+- JQuery/Ajax-Wicket
+- Convenient Generic Comparator
+- Dependencies set to optional
+
 1.2-SNAPSHOT
   - new PercentageConverter (like MoneyConverter)
   - Types Money, Percentage, and Quantity registered in SafeModel

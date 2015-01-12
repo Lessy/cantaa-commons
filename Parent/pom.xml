@@ -19,7 +19,7 @@
 
    <groupId>com.cantaa</groupId>
    <artifactId>cantaa-commons-parent</artifactId>
-   <version>1.5-SNAPSHOT</version>
+   <version>1.5</version>
 
    <packaging>pom</packaging>
 
