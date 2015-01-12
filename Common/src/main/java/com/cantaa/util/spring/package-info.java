@@ -1,6 +1,6 @@
 /**
- * Util-Classes with Spring-Dependancy:<br>
- * - spring-beans
+ * Util-Classes with Spring-Dependency:
+ *
  * @author Hans Lesmeister
  */
 package com.cantaa.util.spring;
