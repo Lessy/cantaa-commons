@@ -14,10 +14,11 @@ import org.slf4j.LoggerFactory;
 public final class Environment {
     private static final Logger log = LoggerFactory.getLogger(Environment.class);
 
-    private static String applicationType = null;
+    private static volatile String applicationType = null;
+    private static final Object synchronizedObject = new Object();
 
     public static void setApplicationType(String newApplicationType) {
-        synchronized(applicationType) {
+        synchronized(synchronizedObject) {
             applicationType = newApplicationType;
         }
     }
