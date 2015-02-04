@@ -23,6 +23,10 @@ public final class Environment {
         }
     }
 
+    public static String getApplicationType() {
+        return applicationType;
+    }
+
     public static boolean isApplicationWithType(String type) {
         String s = applicationType;
         log.info("isApplicationWithType[type={}, systemProp={}]", type, s);
