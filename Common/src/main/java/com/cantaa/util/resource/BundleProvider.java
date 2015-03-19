@@ -4,14 +4,19 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.net.URLConnection;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,12 +40,13 @@ public class BundleProvider {
     private static final ResourceBundle.Control control = new MyBundleControl();
     private static final List<String> CONTROL_FORMATS = Arrays.asList("properties.xml");
 
-    private final String[] bundleNames;
+    private final Set<String> bundleNames = new HashSet<String>();
+    private final Map<String, URLClassLoader> bundleLoaders = new HashMap<String, URLClassLoader>();
     private LocaleProvider localeProvider;
 
     /**
      * Constructor for backwards compatibility
-     * @deprecated Use constructor <code>BundleProvider(LocalePricer, String[])</code> instead
+     * @deprecated Use constructor <code>BundleProvider(LocaleProvider, String[])</code> instead
      * @param bundleName
      * @param localeProvider
      */
@@ -56,8 +62,19 @@ public class BundleProvider {
         super();
         Reject.ifNull(bundleNames, "bundleNames is null");
         Reject.ifTrue(bundleNames.length == 0, "bundleNames is empty");
-        this.bundleNames = bundleNames;
+
         this.localeProvider = localeProvider;
+        for (String bundleName : bundleNames) {
+            this.bundleNames.add(bundleName);
+        }
+    }
+
+    public void addBundleLoader(String bundleName, URLClassLoader bundleLoader) {
+        Reject.ifNull(bundleName, "bundleName is null");
+        Reject.ifNull(bundleLoader, "bundleLoader is null");
+
+        bundleNames.add(bundleName);
+        bundleLoaders.put(bundleName, bundleLoader);
     }
 
     public String getString(String key, Object... objects) {
@@ -83,7 +100,13 @@ public class BundleProvider {
         String value = key;
 
         for (String bundleName : bundleNames) {
-            ResourceBundle rb = ResourceBundle.getBundle(bundleName, usedLocale, control);
+            URLClassLoader bundleLoader = bundleLoaders.get(bundleName);
+            ResourceBundle rb;
+            if (bundleLoader == null) {
+                rb = ResourceBundle.getBundle(bundleName, usedLocale, control);
+            } else {
+                rb = ResourceBundle.getBundle(bundleName, usedLocale, bundleLoader, control);
+            }
 
             if (rb.containsKey(key)) {
                 value = rb.getString(key);
