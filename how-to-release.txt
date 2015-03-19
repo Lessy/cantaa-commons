@@ -9,12 +9,13 @@
 - under Build Promotion, goto Staging Repositories
 - Sort the list by Updated and search for comcantaa
 - Close the Repo
-- Wait until ready (do a refresh)
+- Wait until ready (do a refresh). Takes about 2 Minutes.
 - If all is okay (see under tab "activity"): release the Repo
   If not okay: check the reason and drop the Repo, start over with corrections
+- Wait until release is published on central (24 hours)
 
-## Siging artifacts
-- The articfacts are signed with a specific public key. The name of the key is stored in the paren pom. Eventually
+## Signing artifacts
+- The artifacts are signed with a specific public key. The name of the key is stored in the parent pom. Eventually
   change that to another public key
 - To create a new key-pair: gpg --gen-key
 - Upload the public key to a trusted key-server

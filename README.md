@@ -1,6 +1,9 @@
 cantaa-commons
 ==============
 Release:
+
+1.7-SNAPSHOT (start 19.03.2015)
+
 1.6
 - Start Bundle-Externalization
 - new EnumUtil + ValueHolder
