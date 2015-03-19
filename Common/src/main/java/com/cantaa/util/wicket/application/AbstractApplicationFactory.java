@@ -4,8 +4,7 @@ import org.apache.wicket.spring.SpringWebApplicationFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.ConfigurableWebApplicationContext;
 
-import com.cantaa.util.StringUtil;
-import com.cantaa.util.spring.CantaaPropertyPlaceholderConfigurer;
+import com.cantaa.util.Environment;
 
 /**
  * @author Hans Lesmeister
@@ -16,11 +15,7 @@ public abstract class AbstractApplicationFactory extends SpringWebApplicationFac
 
     @Override
     protected ConfigurableWebApplicationContext newApplicationContext() {
-        System.clearProperty(CantaaPropertyPlaceholderConfigurer.APPLICATION_TYPE);
-        if (!StringUtil.isEmpty(getApplicationType())) {
-            System.setProperty(CantaaPropertyPlaceholderConfigurer.APPLICATION_TYPE, getApplicationType());
-        }
-
+        Environment.setApplicationType(getApplicationType());
         ConfigurableWebApplicationContext configurableWebApplicationContext = super.newApplicationContext();
         applicationContext = configurableWebApplicationContext;
         return configurableWebApplicationContext;

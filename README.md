@@ -1,6 +1,11 @@
 cantaa-commons
 ==============
 Release:
+1.6
+- Start Bundle-Externalization
+- new EnumUtil + ValueHolder
+- Wicket AbstractApplicationFactory no longer writes the appType to a system property but uses a static variable in class Environment
+
 1.5
 - Time, TimeConverter
 - PlaceHolderConfigurer, Prop.loader
