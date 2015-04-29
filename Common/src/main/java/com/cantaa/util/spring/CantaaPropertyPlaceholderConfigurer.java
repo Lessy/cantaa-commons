@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
+import com.cantaa.util.Environment;
 import com.cantaa.util.PropertiesLoader;
 import com.cantaa.util.StringUtil;
 
@@ -16,7 +17,7 @@ import com.cantaa.util.StringUtil;
  */
 public class CantaaPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
     private static final Logger log = LoggerFactory.getLogger(CantaaPropertyPlaceholderConfigurer.class);
-    public static final String APPLICATION_TYPE = "cantaa.commons.application.type";
+//    public static final String APPLICATION_TYPE = "cantaa.commons.application.type";
 
     @Override
     protected Properties mergeProperties() throws IOException {
@@ -33,7 +34,7 @@ public class CantaaPropertyPlaceholderConfigurer extends PropertyPlaceholderConf
      * @param props Properties to (eventually) strip
      */
     public static void stripProperties(Properties props) {
-        String type = System.getProperty(APPLICATION_TYPE);
+        String type = Environment.getApplicationType();
 
         if (!StringUtil.isEmpty(type)) {
             PropertiesLoader.stripProperties(type, props, true);
