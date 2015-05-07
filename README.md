@@ -2,6 +2,9 @@ cantaa-commons
 ==============
 Release:
 
+1.8-SNAPSHOT (start 07.05.2015)
+- ...
+
 1.7
 - new: Cache.list(Type)
 - fix: AppType was still read from System-Settings in one place. Corrected to Environment
