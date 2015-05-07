@@ -2,9 +2,10 @@ cantaa-commons
 ==============
 Release:
 
-1.7-SNAPSHOT (start 19.03.2015)
-- AppType was still read from System-Settings in one place. Corrected to Environment
-- Wicket: New FocusOnLoadBehavior
+1.7
+- new: Cache.list(Type)
+- fix: AppType was still read from System-Settings in one place. Corrected to Environment
+- new: Wicket: New FocusOnLoadBehavior
 
 1.6
 - Start Bundle-Externalization
