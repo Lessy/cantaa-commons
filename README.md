@@ -3,7 +3,7 @@ cantaa-commons
 Release:
 
 1.8-SNAPSHOT (start 07.05.2015)
-- ...
+- cosmetic: log.debug instead of info
 
 1.7
 - new: Cache.list(Type)

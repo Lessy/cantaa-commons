@@ -29,7 +29,7 @@ public final class Environment {
 
     public static boolean isApplicationWithType(String type) {
         String s = applicationType;
-        log.info("isApplicationWithType[type={}, systemProp={}]", type, s);
+        log.debug("isApplicationWithType[type={}, systemProp={}]", type, s);
 
         if (type == null) {
             return (s == null);
