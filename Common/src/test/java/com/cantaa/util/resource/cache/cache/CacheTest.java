@@ -1,7 +1,11 @@
 package com.cantaa.util.resource.cache.cache;
 
+import java.util.List;
+
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -61,6 +65,23 @@ public class CacheTest {
         cache.remove(Type2.class, 1L);
         assertEquals(t11, cache.read(Type1.class, 1L));
         assertEquals(null, cache.read(Type2.class, 1L));
+    }
+
+    @Test
+    public void testList() throws Exception {
+        testReadWrite();
+        List list = cache.list(Type1.class);
+        assertNotNull(list);
+        assertEquals(3, list.size());
+        assertTrue(list.contains(t11));
+        assertTrue(list.contains(t12));
+        assertTrue(list.contains(t13));
+
+        list = cache.list(Type2.class);
+        assertNotNull(list);
+        assertEquals(2, list.size());
+        assertTrue(list.contains(t21));
+        assertTrue(list.contains(t22));
     }
 
     @Test

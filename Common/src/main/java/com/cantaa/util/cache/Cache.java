@@ -1,5 +1,8 @@
 package com.cantaa.util.cache;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -29,6 +32,31 @@ public class Cache {
         }
 
         return (C) map.get(id);
+    }
+
+    /**
+     * Read a list of entities from the cache
+     * @param clazz Type of the entity
+     * @return The entities
+     */
+    public <C extends Cacheable> List<C> list(Class<? extends Cacheable> clazz) {
+
+        ArrayList<C> list = new ArrayList<C>();
+
+        if (clazz == null) {
+            return list;
+        }
+
+        Map<Object, ? extends Cacheable> map = cache.get(clazz);
+//        Map<Object, C> map = cache.get(clazz);
+        if (map == null) {
+            return list;
+        }
+
+        Collection<C> values = (Collection<C>) map.values();
+        list = new ArrayList<C>(values);
+
+        return list;
     }
 
     /**
