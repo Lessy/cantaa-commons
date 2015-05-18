@@ -2,7 +2,7 @@ package com.cantaa.util;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
 
 /**
  * All kind of String-Utility Methods
@@ -29,23 +29,27 @@ public class StringUtil {
         return join(separator, Arrays.asList(values));
     }
 
-    public static CharSequence join(String separator, List<Object> values) {
+    /**
+     * Concatenate Objects from an iterable object. Empty objects (null or empty string) are ignored and skipped
+     * @param separator Separator may be null
+     * @param values The values
+     * @return null if iterable is null or empty, otherwise concatenated string
+     */
+    public static CharSequence join(String separator, Iterable<Object> values) {
         if (values == null) {
             return null;
         }
 
-        if (values.isEmpty()) {
+        Iterator<Object> iterator = values.iterator();
+        if (!iterator.hasNext()) {
             return null;
-        }
-
-        if (values.size() == 1) {
-            return objectToString(values.get(0));
         }
 
         boolean added = false;
         StringBuilder b = new StringBuilder();
-        for (int i = 0; i < values.size(); i++) {
-            String value = objectToString(values.get(i));
+        while (iterator.hasNext()) {
+            Object next = iterator.next();
+            String value = objectToString(next);
             if (StringUtil.isEmpty(value)) {
                 continue;
             }
@@ -58,7 +62,7 @@ public class StringUtil {
             added = true;
         }
 
-        return b.toString();
+        return b;
     }
 
     /**
