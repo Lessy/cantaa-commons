@@ -2,7 +2,9 @@ cantaa-commons
 ==============
 Release:
 
-1.8-SNAPSHOT (start 07.05.2015)
+1.9-SNAPSHOT (start 17.06.2015)
+
+1.8
 - StringUtil.join now takes an iterable instead of a list
 - cosmetic: log.debug instead of info
 
