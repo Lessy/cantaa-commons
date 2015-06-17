@@ -21,21 +21,22 @@ public class StringUtil {
         return (value == null) ? null : value.trim();
     }
 
-    public static CharSequence join(String separator, Object... values) {
+    public static String join(String separator, Object[] values) {
         if (values == null) {
             return null;
         }
 
-        return join(separator, Arrays.asList(values));
+        return join(Arrays.asList(values), separator);
     }
 
     /**
      * Concatenate Objects from an iterable object. Empty objects (null or empty string) are ignored and skipped
+     *
+     * @param values    The values
      * @param separator Separator may be null
-     * @param values The values
      * @return null if iterable is null or empty, otherwise concatenated string
      */
-    public static CharSequence join(String separator, Iterable<Object> values) {
+    public static String join(Iterable<Object> values, String separator) {
         if (values == null) {
             return null;
         }
@@ -62,7 +63,7 @@ public class StringUtil {
             added = true;
         }
 
-        return b;
+        return b.toString();
     }
 
     /**
@@ -79,8 +80,8 @@ public class StringUtil {
     /**
      * Concats 2 objects with an optional separator. Sep. is only inserted if objects are both not null
      *
-     * @return Concatenated string
      * @param sep Separator, space if null
+     * @return Concatenated string
      * @deprecated Use join instead
      */
     public static String concatenateNotEmpty(String sep, String s1, String s2) {
@@ -88,7 +89,7 @@ public class StringUtil {
             sep = " ";
         }
 
-        CharSequence join = join(sep, s1, s2);
+        CharSequence join = join(sep, new Object[]{s1, s2});
         if (join == null) {
             return null;
         }
@@ -112,7 +113,7 @@ public class StringUtil {
      * besteht.
      *
      * @return true, wenn Zeichenkette aus mindestens einem nocn-white-space Zeichen
-     *         besteht, ansonsten false
+     * besteht, ansonsten false
      */
     public static boolean isEmpty(String s) {
         return ((s == null) || (s.trim().length() == 0));
@@ -148,23 +149,26 @@ public class StringUtil {
      */
     public static String toUpperLower(String value) {
 
-      if (value == null) {
-         return null;
+        if (value == null) {
+            return null;
+        }
+
+        if (value.length() == 0) {
+            return "";
+        }
+
+        if (value.length() == 1) {
+            return value.toUpperCase();
+        }
+
+        return join(
+                null,
+                new Object[]{
+                        value.substring(0, 1).toUpperCase(),
+                        value.substring(1).toLowerCase()
+                })
+                .toString();
     }
-
-      if (value.length() == 0) {
-         return "";
-      }
-
-      if (value.length() == 1) {
-         return value.toUpperCase();
-      }
-
-      return join(
-              null,
-              value.substring(0, 1).toUpperCase(),
-              value.substring(1).toLowerCase()).toString();
-   }
 
     /**
      * Outputs the throwable and its stacktrace to the stringbuffer. If stopAtWicketSerlvet is true

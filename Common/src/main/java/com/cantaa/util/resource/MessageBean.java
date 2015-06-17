@@ -33,7 +33,7 @@ public class MessageBean implements MessageHolder {
 
    public String getMessage() {
       if (messageResolver == null) {
-         return StringUtil.join(null, key, insets).toString();
+         return StringUtil.join(null, new Object[] {key, insets}).toString();
       }
 
       return messageResolver.getString(key, insets);
