@@ -2,7 +2,8 @@ cantaa-commons
 ==============
 Release:
 
-1.9-SNAPSHOT (start 17.06.2015)
+1.9 start 17.06.2015)
+- New: extend loaded properties with additional properties from external file
 
 1.8
 - StringUtil.join now takes an iterable instead of a list
