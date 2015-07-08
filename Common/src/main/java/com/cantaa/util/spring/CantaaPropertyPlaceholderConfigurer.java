@@ -1,15 +1,12 @@
 package com.cantaa.util.spring;
 
+import com.cantaa.util.Environment;
+import com.cantaa.util.PropertiesLoader;
 import java.io.IOException;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-
-import com.cantaa.util.Environment;
-import com.cantaa.util.PropertiesLoader;
-import com.cantaa.util.StringUtil;
 
 /**
  * Replacement Placeholder-Configurer to be used in Spring Context
@@ -23,6 +20,7 @@ public class CantaaPropertyPlaceholderConfigurer extends PropertyPlaceholderConf
     protected Properties mergeProperties() throws IOException {
         Properties props = super.mergeProperties();
         stripProperties(props);
+        PropertiesLoader.extendPropertiesFromExternalFile(props);
         log.info("** Properties loaded from SpringContext **");
         PropertiesLoader.logProperties(props);
         return props;
@@ -35,11 +33,7 @@ public class CantaaPropertyPlaceholderConfigurer extends PropertyPlaceholderConf
      */
     public static void stripProperties(Properties props) {
         String type = Environment.getApplicationType();
-
-        if (!StringUtil.isEmpty(type)) {
-            PropertiesLoader.stripProperties(type, props, true);
-//            stripPropertiesPrefix(type, props);
-        }
+        PropertiesLoader.stripProperties(type, props, true);
     }
 
 //    /**
