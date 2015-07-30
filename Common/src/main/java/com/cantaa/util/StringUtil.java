@@ -36,12 +36,12 @@ public class StringUtil {
      * @param separator Separator may be null
      * @return null if iterable is null or empty, otherwise concatenated string
      */
-    public static String join(Iterable<Object> values, String separator) {
+    public static String join(Iterable<?> values, String separator) {
         if (values == null) {
             return null;
         }
 
-        Iterator<Object> iterator = values.iterator();
+        Iterator<?> iterator = values.iterator();
         if (!iterator.hasNext()) {
             return null;
         }
@@ -65,48 +65,6 @@ public class StringUtil {
 
         return b.toString();
     }
-
-    /**
-     * Concats an array of objects
-     *
-     * @param objects Objects
-     * @return Concatenated
-     * @deprecated Use join instead (returns CharSequence instead of StringBuilder since 17.07.2014)
-     */
-    public static CharSequence concatenate(Object... objects) {
-        return join(null, objects);
-    }
-
-    /**
-     * Concats 2 objects with an optional separator. Sep. is only inserted if objects are both not null
-     *
-     * @param sep Separator, space if null
-     * @return Concatenated string
-     * @deprecated Use join instead
-     */
-    public static String concatenateNotEmpty(String sep, String s1, String s2) {
-        if (sep == null) {
-            sep = " ";
-        }
-
-        CharSequence join = join(sep, new Object[]{s1, s2});
-        if (join == null) {
-            return null;
-        }
-
-        return join.toString();
-    }
-
-    /**
-     * Concats 2 objects separated by a space. Sep. is only inserted if objects are both not null
-     *
-     * @return Concatenated string
-     * @deprecated Use join instead
-     */
-    public static String concatenateNotEmpty(String s1, String s2) {
-        return concatenateNotEmpty(null, s1, s2);
-    }
-
 
     /**
      * Prueft ob uebergebene Zeichenkette null oder ist bzw nur aus white spaces

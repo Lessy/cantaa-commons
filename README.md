@@ -2,6 +2,10 @@ cantaa-commons
 ==============
 Release:
 
+2.0 start 30.07.2015
+- StringUtil: remove deprecated concatenate-Methods
+- StringUtil.join: Iterable of Object changed to Iterable of any type
+
 1.9 start 17.06.2015)
 - New: extend loaded properties with additional properties from external file
 
