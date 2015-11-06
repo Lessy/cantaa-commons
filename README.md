@@ -2,6 +2,9 @@ cantaa-commons
 ==============
 Release:
 
+2.1 start 06.11.2015
+- New methods in DateUtil
+
 2.0 start 30.07.2015
 - StringUtil: remove deprecated concatenate-Methods
 - StringUtil.join: Iterable of Object changed to Iterable of any type

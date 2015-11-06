@@ -106,22 +106,81 @@ public class DateUtil {
         return cal;
     }
 
-    public static Date addDays(Date date, int days) {
-        Calendar c = getCalendar(date);
-        c.add(Calendar.DATE, days);
+    /**
+     * Get a date for the last day of the month based on the applied date
+     * @param date if null, then the current date is used
+     * @return new date where the day is set to the last day of the month
+     */
+    public static Date getLastDayOfMonth(Date date) {
+        Calendar cal = getCalendar(date);
+        cal.add(Calendar.MONTH, 1);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        cal.add(Calendar.DAY_OF_MONTH, -1);
+        return cal.getTime();
+    }
 
+    /**
+     * Get a date for the first day of the month based on the applied date
+     * @param date if null, then the current date is used
+     * @return new date where the day is set to the first day of the month
+     */
+    public static Date getFirstDayOfMonth(Date date) {
+        Calendar cal = getCalendar(date);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        return cal.getTime();
+    }
+
+    public static Date addDays(Date date, int days) {
+        return addValues(date, days, Calendar.DATE);
+    }
+
+    public static Date addMonths(Date date, int months) {
+        return addValues(date, months, Calendar.MONTH);
+    }
+
+    public static Date addYears(Date date, int years) {
+        return addValues(date, years, Calendar.YEAR);
+    }
+
+    private static Date addValues(Date date, int value, int type) {
+        Calendar c = getCalendar(date);
+        c.add(value, type);
         return c.getTime();
     }
 
     /**
      * Gets the Year-Part from a date
      *
-     * @param date Date to extract the year from. If null, then the actual year is returned
+     * @param date Date to extract the year from. If null, then the current year is returned
      * @return The year, extracted from the date
      */
     public static int getYear(Date date) {
+        return getValue(date, Calendar.YEAR);
+    }
+
+    /**
+     * Gets the Month-Part from a date
+     *
+     * @param date Date to extract the month from. If null, then the current month is returned
+     * @return The month, extracted from the date, where Jan.=1, Feb=2, etc
+     */
+    public static int getMonth(Date date) {
+        return getValue(date, Calendar.MONTH) + 1;
+    }
+
+    /**
+     * Gets the Day in the month from a date
+     *
+     * @param date Date to extract the day from. If null, then the current day is returned
+     * @return The day of the month, extracted from the date
+     */
+    public static int getDay(Date date) {
+        return getValue(date, Calendar.DAY_OF_MONTH);
+    }
+
+    private static int getValue(Date date, int type) {
         Calendar c = getCalendar(date);
-        return c.get(Calendar.YEAR);
+        return c.get(type);
     }
 
 
